@@ -74,7 +74,6 @@ ROOT_LIST=$(fetch_dir_list "$ROOT_HTML")
 
 echo "$ROOT_LIST" | while read line
 do
-    echo 'test!'
     process_dir $(echo "$line" | cut -c24-9999)
 done
 
