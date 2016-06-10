@@ -43,9 +43,15 @@ function process_dir() {
     if [ -z "$TYPE_CHECK" ]; 
     then 
         DIR_LIST=$(fetch_dir_list "$DIR_CONTENT")
-        echo "$DIR_LIST" | while read line
+
+        if [ -z "$DIR_LIST" ];
+        then
+            return;
+        fi
+
+        echo "$DIR_LIST" | while read fline
         do
-            process_dir $(echo "$line" | cut -c24-9999)
+            process_dir $(echo "$fline" | cut -c24-9999)
         done
     else
         FILE_LIST=$(fetch_file_list "$DIR_CONTENT")
@@ -68,6 +74,7 @@ ROOT_LIST=$(fetch_dir_list "$ROOT_HTML")
 
 echo "$ROOT_LIST" | while read line
 do
+    echo 'test!'
     process_dir $(echo "$line" | cut -c24-9999)
 done
 
