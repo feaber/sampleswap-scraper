@@ -55,6 +55,12 @@ function process_dir() {
         done
     else
         FILE_LIST=$(fetch_file_list "$DIR_CONTENT")
+
+        if [ -z "$FILE_LIST" ];
+        then
+            return;
+        fi
+
         echo "$FILE_LIST" | while read line
         do
             echo $(basename "$line")
