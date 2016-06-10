@@ -49,9 +49,9 @@ function process_dir() {
             return;
         fi
 
-        echo "$DIR_LIST" | while read fline
+        echo "$DIR_LIST" | while read line
         do
-            process_dir $(echo "$fline" | cut -c24-9999)
+            process_dir $(echo "$line" | cut -c24-9999)
         done
     else
         FILE_LIST=$(fetch_file_list "$DIR_CONTENT")
