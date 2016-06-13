@@ -63,8 +63,11 @@ function process_dir() {
 
         echo "$FILE_LIST" | while read line
         do
-            echo $(basename "$line")
-            wget -q -P "${DOWNLOAD_PATH}/${ENCODED_DIR}" "${ROOT_URL}${line}"
+            filename=$(basename "$line")
+            if [ ! -f "${DOWNLOAD_PATH}/${ENCODED_DIR}/$filename" ]; then
+                echo "$filename"
+                wget -q -P "${DOWNLOAD_PATH}/${ENCODED_DIR}" "${ROOT_URL}${line}"
+            fi
         done
     fi
 }
